@@ -1,20 +1,43 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>Formulário IMC</title>
 </head>
 <body>
 
-    <form method="post">
-        Enviando um valor:
-        <input type="number" name="num" value="submit">
-        <input type="submit"> 
-    </form>
+<head>
+    <title>Formulário Para Cálculo do IMC em FastAPI</title>
+</head>
 
-    <p>Resultado: {{ result }}</p>
+<body>
+    <h1 class="h1">Aplicativo Para Calcular o IMC.</h1>
+    <h3>Elaborado por Felipe Hardmann.</h3>
+    <p>e-mail: fasharmann@gmail.com</p>
+    <link href="{{ url_for('static', path='style.css') }}" rel="stylesheet">
+        
+
+<form method="post" action="/form">
+    <p><b>Digite o valor do peso em (kg):</b> <input type="number" name="peso" value="submit"></p>
+    <p><b>Digite o valor da altura em (cm):</b> <input type="number" name="altura" value="submit"></p>
+    <p><i>Enviar formulário:</i><input type="submit"></p>
+</form>
+    
+<p>Resultado do Cálculo. Seu imc é:{{ imc }}</p>
+    
+
+<div class="Div1">
+    <p><h2>Sua faixa de classificação pelo valor do seu IMC, é: </h2></p>
+    {% if imc < 18.5 %} 
+    <p> <h2>Magreza</h2> </p>
+    {% elif 18.5 < imc <= 24.9 %} 
+    <p> <h2>Saudável</h2> </p>
+    {% elif 24.9 < imc <= 29.9 %} 
+    <p> <h2>Sobrepeso</h2> </p>
+    {% else %} 
+    <p> <h2>Obesidade</h2> </p>
+    {% endif %}
+</div>
+
+<button onclick="location.href='/' ">retornar ao índice</button>
 
 </body>
 </html>
